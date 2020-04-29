@@ -47,10 +47,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 //Route::group(['prefix' => 'admin'], function() {
 //    Route::get('profile/edit', 'Admin\ProfileController@edit')->middleware('auth');
 //});
+
 //PHP/Laravel 13 課題６
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-    Route::get('profile/create', 'Admin\ProfileController@edit');
-    Route::post('profile/create', 'Admin\ProfileController@update');
+    Route::get('profile/edit', 'Admin\ProfileController@edit');
+    Route::post('profile/edit', 'Admin\ProfileController@update');
 });
 
 
