@@ -28,11 +28,11 @@
                     <div class="form-group row">
                         <label class="col-md-2">性別</label>
                         <div class="radio-inline">
-                            <input type="radio" value="1" name="gender" id="man">
+                            <input type="radio" value="man" name="gender">
                             <label for="man">男性</label>
                         </div>
                         <div class="radio-inline">
-                            <input type="radio" value="2" name="gender" id="woman">
+                            <input type="radio" value="woman" name="gender">
                             <label for="woman">女性</label>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                     <div class="form-group row">
                         <label class="col-md-2">自己紹介</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="introduce" rows="10">{{ old('introduce') }}</textarea>
+                            <textarea class="form-control" name="introduction" rows="10">{{ old('introduction') }}</textarea>
                         </div>
                     </div>
                     {{ csrf_field() }}
