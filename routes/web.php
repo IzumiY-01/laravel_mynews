@@ -23,7 +23,13 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('news/create', 'Admin\NewsController@add');
     Route::post('news/create', 'Admin\NewsController@create');
+    Route::get('news', 'Admin\NewsController@index'); //PL15追記
+    Route::get('news/edit', 'Admin\NewsController@edit'); // PL16追記
+    Route::post('news/edit', 'Admin\NewsController@update'); // PL16追記
+    Route::get('news/delete', 'Admin\NewsController@delete'); // PL16追記 
 });
+
+
 
 //PHP/Laravel 09 Routingについて理解する
 
