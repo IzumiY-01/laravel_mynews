@@ -17,12 +17,13 @@ class NewsController extends Controller
     }
     
     //PHP/Laravel 13 追記
-    public function create(Request $request){
+    public function create(Request $request)
+    {
         //php/Laravel 14 Varidationを行う
         $this->validate($request, News::$rules);
         $news = new News;
         $form = $request->all();
-        
+       
         // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存するPL14
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
@@ -38,17 +39,19 @@ class NewsController extends Controller
         // データベースに保存するPL14
         $news->fill($form);
         $news->save();
-        
+        \Debugbar::info($news);
         // admin/news/createにリダイレクトする
         return redirect('admin/news/create');
     }
     
-    // PHP/Laravel 15追記
-    public function index(Request $request){
+    // PHP/Laravel 15追記 一覧作成
+    public function index(Request $request)
+    {
         $cond_title = $request->cond_title;
         if ($cond_title != '') {
             // 検索されたら検索結果を取得する
             $posts = News::where('title', $cond_title)->get();
+            \Debugbar::info($posts);
         } else {
           // それ以外はすべてのニュースを取得する
             $posts = News::all();
@@ -57,7 +60,8 @@ class NewsController extends Controller
     }
     
     //PHP/Laravel 16追記 (編集・更新)
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
         // News Modelからデータを取得する
         $news = News::find($request->id);
         if (empty($news)) {
@@ -66,13 +70,15 @@ class NewsController extends Controller
         return view('admin.news.edit', ['news_form' => $news]);
     }
     
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         // Validationをかける
         $this->validate($request, News::$rules);
         // News Modelからデータを取得する
         $news = News::find($request->id);
         // 送信されてきたフォームデータを格納する
         $news_form = $request->all();
+        
         if (isset($news_form['image'])) {
             $path = $request->file('image')->store('public/image');
             $news->image_path = basename($path);
@@ -89,7 +95,8 @@ class NewsController extends Controller
     }
     
     //PHP/Laravel 16追記(削除)
-    public function delete(Request $request){
+    public function delete(Request $request)
+    {
         // 該当するNews Modelを取得
         $news = News::find($request->id);
         // 削除する

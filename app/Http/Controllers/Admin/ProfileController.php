@@ -30,12 +30,20 @@ class ProfileController extends Controller
         
         return redirect('admin/profile/create');
     }
-
-    public function edit()
+    
+    //edit 編集画面表示
+    public function edit(Request $request)
     {
-        return view('admin.profile.edit');
+        // Profile Modelからデータを取得する
+        $profile = Profile::find($request->id);
+        \Debugbar::info($profile);
+        if (empty($profile)) {
+            abort(404);
+        }
+        return view('admin.profile.edit', ['profile_form' => $profile]);
     }
-
+    
+    //update編集画面から送信されたフォームデータを処理する
     public function update(Request $request)
     {
         return redirect('admin/profile/edit');
