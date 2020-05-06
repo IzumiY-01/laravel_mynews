@@ -7,9 +7,12 @@ use App\Http\Controllers\Controller;
 //php/Laravel 14追記
 use App\News; //(News Modelが扱えるようになる)
 
+//php/Laravel 17追記
+use App\History; //History Modelが扱えるようになる）
+use Carbon\Carbon; //日付操作ライブラリ
+
 class NewsController extends Controller
 {
-  
     //追記
     public function add()
     {
@@ -91,6 +94,14 @@ class NewsController extends Controller
         
         // 該当するデータを上書きして保存する
         $news->fill($news_form)->save();
+        
+        //PHP/Laravel17 追記
+        $history = new History;
+        $history->news_id = $news->id;
+        $history->edited_at = Carbon::now();
+        \Debugbar::info($history);
+        $history->save();
+        
         return redirect('admin/news');
     }
     

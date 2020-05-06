@@ -64,3 +64,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//PHP/Laravel 18
+Route::get('/', 'NewsController@index');
+
+// /profile にアクセスが来たら ProfileController/index Action に渡す
+Route::get('profile', 'ProfileController@index');
