@@ -26,7 +26,7 @@ class NewsController extends Controller
         $this->validate($request, News::$rules);
         $news = new News;
         $form = $request->all();
-       
+        
         // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存するPL14
         if (isset($form['image'])) {
             $path = $request->file('image')->store('public/image');
@@ -44,7 +44,7 @@ class NewsController extends Controller
         $news->save();
         \Debugbar::info($news);
         // admin/news/createにリダイレクトする
-        return redirect('admin/news/create');
+        return redirect('admin/news');
     }
     
     // PHP/Laravel 15追記 一覧作成
