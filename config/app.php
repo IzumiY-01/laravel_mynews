@@ -1,6 +1,6 @@
 <?php
 
-return [
+$tmp = [
 
     /*
     |--------------------------------------------------------------------------
@@ -236,3 +236,10 @@ return [
 
     
 ];
+
+if (env('APP_ENV') == 'local') {
+  $tmp['providers'][] = 'Barryvdh\Debugbar\ServiceProvider';
+  $tmp['aliases']['Debugbar']  = 'Barryvdh\Debugbar\Facade';
+}
+return $tmp;
+
