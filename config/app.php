@@ -178,7 +178,7 @@ return [
         /*
         *Barryvdh Debugbar 追記 
         */
-        Barryvdh\Debugbar\ServiceProvider::class,
+        // Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
