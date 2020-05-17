@@ -34,10 +34,10 @@
                         <div class="row">
                             <div class="text col-md-6">
                                 <div class="date">
-                                    {{ $post->updated_at->format('Y年m月d日') }}
+                                    投稿日：{{ $post->updated_at->format('Y年m月d日') }}
                                 </div>
                                 <div class="title">
-                                    {{ str_limit($post->title, 150) }}
+                                    タイトル：{{ str_limit($post->title, 150) }}
                                 </div>
                                 <div class="body mt-3">
                                     {{ str_limit($post->body, 1500) }}
