@@ -70,3 +70,6 @@ Route::get('/', 'NewsController@index');
 
 // /profile にアクセスが来たら ProfileController/index Action に渡す
 Route::get('profile', 'ProfileController@index');
+
+// Ajax課題
+Route::get('/apiview', 'Api\NewsController@apiview');
