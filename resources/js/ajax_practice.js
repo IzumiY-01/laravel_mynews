@@ -40,7 +40,7 @@ $(function() {
      //add news
      $('#add_news').click('on',function() {
          
-         var json1 = {
+         var parms = {
              'title':'テスト','body':'お願いしまーす'
          };
          
@@ -52,11 +52,36 @@ $(function() {
              url: '/api/addnews',
              type:'POST',
              contentType:"application/json",
-             data:JSON.stringify(json1)
-            
+             data:JSON.stringify(parms)
          })
 
          .done(function(response) {
+             console.log(response);
+         })
+         
+         .fail(function() {
+             alert('エラー');
+         });
+     })
+     
+     //submit
+     $('#submit_news').click('on',function(){
+       
+       var title = document.getElementById('title').value;
+       var body = document.getElementById('body').value;
+       console.log(title);
+       console.log(body);
+       
+       $.ajax({
+           url:'/api/submit',
+           type:'POST',
+           contentType:'application/json',
+           data:JSON.stringify({
+               title:title,body:body
+           })
+           
+       })
+        .done(function(response) {
              console.log(response);
          })
          

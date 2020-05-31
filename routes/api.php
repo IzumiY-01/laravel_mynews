@@ -22,4 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['middleware' => ['api']], function(){
   Route::get('/news', 'Api\NewsController@index');
   Route::post('/addnews','Api\NewsController@addnews');
+  Route::post('/submit','Api\NewsController@submit');
 });

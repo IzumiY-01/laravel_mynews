@@ -24,18 +24,21 @@ class NewsController extends Controller
     
     public function addnews(Request $request)
     {
-        $json_title = $request->input('title');
-        $json_body = $request->input('body');
-        
-        $form = array('title'=>$json_title,'body'=>$json_body);
+        // $json_title = $request->input('title');
         // $json_body = $request->input('body');
-        $news = new News;
-        $news->fill($form);
-        $news->save();
-        
-        
-        return $form;
+        // $form = array('title'=>$json_title,'body'=>$json_body);
+        // $form = json_decode($request);
+         $news = new News;
+         $news->fill($request->all())->save();
+        // $news->save();
+        return $request;
         
     }
     
+    public function submit(Request $request)
+    {   
+        $news = new News;
+        $news->fill($request->all())->save();
+        return $request;
+    }
 }
